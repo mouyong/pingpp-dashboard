@@ -1,0 +1,42 @@
+{
+    "name": "mouyong/pingpp-dashboard",
+    "description": "A ping++ dashboard sdk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "牟勇",
+            "email": "my24251325@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Yan\\PingPPDashboard\\": "./src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Yan\\PingPPDashboard\\Tests\\": "./tests/"
+        }
+    },
+    "require": {
+        "monolog/monolog": "^1.23",
+        "mouyong/foundation": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.3",
+        "mockery/mockery": "^1.1"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Yan\\PingPPDashboard\\ServiceProvider"
+            ]
+        }
+    },
+    "repositories": {
+        "foundation": {
+            "type": "path",
+            "url": "../foundation/"
+        }
+    }
+}
