@@ -24,9 +24,13 @@ class AccessToken extends BearerToken
         return $request->withUri($request->getUri()->withQuery($query));
     }
 
-    public function requestExpired(array $response)
+    public function requestExpired($response)
     {
-        return $response['status'] === false;
+        if (is_array($response)) {
+            return !$response['status'];
+        }
+
+        return false;
     }
 
     public function validateResquestResult($result, $response, $formatted)
