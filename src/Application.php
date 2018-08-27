@@ -7,6 +7,7 @@ use Yan\Foundation\Kernel\ServiceContainer;
 /**
  * Class Application
  *
+ * @property \Yan\PingPPDashboard\Auth\AccessToken $accessToken
  * @property \Yan\PingPPDashboard\Dashboard\DashboardClient $dashboard
  *
  * @package Yan\PingPPDashboard

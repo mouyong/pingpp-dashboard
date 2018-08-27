@@ -7,9 +7,9 @@ use Pimple\ServiceProviderInterface;
 
 class ServiceProvider  implements ServiceProviderInterface
 {
-    public function register(Container $pimple)
+    public function register(Container $app)
     {
-        $pimple['access_token'] = function ($app) {
+        $app['accessToken'] = function ($app) {
             return new AccessToken($app);
         };
     }
