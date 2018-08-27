@@ -24,13 +24,18 @@ class AccessToken extends BearerToken
         return $request->withUri($request->getUri()->withQuery($query));
     }
 
+    public function requestExpired(array $response)
+    {
+        return $response['status'] === false;
+    }
+
     public function validateResquestResult($result, $response, $formatted)
     {
-        if ($response['status'] === false) {
+        if ($this->requestExpired($response)) {
+            $this->getCache()->delete($this->getCacheKey());
+
             throw new LoginException($response['data']['message'], $response['data']['code']);
         }
-
-        parent::validateResquestResult($result, $response, $formatted);
     }
 
     protected function getCredentials(): array
