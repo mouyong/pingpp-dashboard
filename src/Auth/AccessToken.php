@@ -4,6 +4,7 @@ namespace Yan\PingPPDashboard\Auth;
 
 use Psr\Http\Message\RequestInterface;
 use Yan\Foundation\Kernel\Auth\BearerToken;
+use Yan\PingPPDashboard\Exceptions\LoginException;
 
 class AccessToken extends BearerToken
 {
@@ -21,6 +22,15 @@ class AccessToken extends BearerToken
         ], $query));
 
         return $request->withUri($request->getUri()->withQuery($query));
+    }
+
+    public function validateResquestResult($result, $response, $formatted)
+    {
+        if ($response['status'] === false) {
+            throw new LoginException($response['data']['message'], $response['data']['code']);
+        }
+
+        parent::validateResquestResult($result, $response, $formatted);
     }
 
     protected function getCredentials(): array
